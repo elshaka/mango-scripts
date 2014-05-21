@@ -1,0 +1,1 @@
+UPDATE batches INNER JOIN (SELECT batch_id, MIN(created_at) AS start_date, MAX(created_at) AS end_date FROM batch_hoppers_lots GROUP BY batch_id) AS batch_hoppers_lots ON batch_hoppers_lots.batch_id = batches.id SET batches.start_date = batch_hoppers_lots.start_date, batches.end_date = batch_hoppers_lots.end_date;
